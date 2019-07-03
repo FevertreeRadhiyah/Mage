@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <payment>
+            <custompayment>
+                <payment_action>authorize</payment_action><!-- You can use another methor like capture  -->
+                <model>Emipro\Custompayment\Model\Custompayment</model>
+                <active>1</active>
+                <title>Emipro Payment</title>
+                <order_status>pending_payment</order_status><!-- set default order status-->
+                <payable_to>Demotest</payable_to>
+                <businessID>565</businessID>
+                <password>Demo</password>
+            </custompayment>
+        </payment>
+    </default>
+</config>

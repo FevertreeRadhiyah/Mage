@@ -1,0 +1,104 @@
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label data-bind="attr: {'for': getCode()}" class="label"><span data-bind="text: getTitle()"></span></label>
+    </div>
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+     
+ 
+        <div>
+    <form id="custom-checkout-form" class="form" data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+       <div  id="custom_input" class="form-row form-row-wide">
+           <p>Please enter your ID Number and click send OTP to continue the process, This helps us confirm your identity
+            and secure your transaction.</p>
+          
+                    <table style="max-width: 58%">
+                    <tr nowrap>
+                    <td nowrap>
+                    <label >ID Number : <span class="required"></span></label>
+                   
+                    </td>
+                    <td>
+                    <input id="idNumber" name="idNumber" type="text" class="form-control" AutoPostBack="True" style="width:203px">
+                   
+                    </td>
+                    <td>
+                    <button id="SendOTP" type="button" class="btn btn-secondary" data-bind="click : click">Send OTP</button>
+                   
+                    
+                    
+                    <input type="hidden" id="otpSent" value=""/>
+                    <input type="text" style="display:none" id="GUID" name="GUID" />
+                    <input type="text" style="display:none" id="pinSuccess" name="pinSuccess" />
+                    <input type="text"  style="display:none" id="username" name="username" value="565"  />
+                    <input type="text"  style="display:none" id="password" name="password" />
+                    <label  id="FTUsername" style="display:none" name="FTUsername" data-bind="html : getUsername()"></label>
+                    <label  id="FTPassword" style="display:none" name="FTPassword" data-bind="html : getPassword()"></label>
+                    <label  id="orderT" style="display:none" name="orderT" data-bind="html : getOrdertotal()"></label>
+                    
+                   
+  
+                  
+
+                    </td>
+                </tr>
+                    <tr>
+                    <td>
+
+                    <label id="pinverifylabel">OTP : <span class="required" ></span></label>
+                    
+                    </td>
+                    
+                    <td>
+                    <input id="OTP" type="text" class="form-control" autocomplete="off" style="width:203px" >
+                    </td>
+    
+                    <td>
+                    <button id="pinverifybtn" type="button" class="btn btn-secondary"  data-bind="click: verifyOTP">Verify OTP</button>
+                    </td>
+                    
+                    
+                    <label id="otpResult"  style="display:none"></label>
+                    <label id="balance"  style="display:none"></label>
+                    <label id="labelBalance"  style="display:none"></label>
+                    </tr>
+
+                    </table>
+
+</div>
+</div>
+
+
+      
+        <div class="checkout-agreements-block">
+            <!-- ko foreach: $parent.getRegion('before-place-order') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action primary checkout"
+                        type="submit"
+                        data-bind="
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')},
+                        enable: (getCode() == isChecked())
+                        "
+                        disabled>
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

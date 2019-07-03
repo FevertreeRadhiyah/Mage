@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+/**
+ * @var $block \Emipro\Custompayment\Block\Info\Custompayment
+ */
+
+<?= $block->escapeHtml($block->getMethod()->getTitle()) ?>
+<?php if ($block->getInfo()->getAdditionalInformation()): ?>
+    <?php if ($block->getPayableTo()): ?>
+        <br /><?= $block->escapeHtml(__('Make Check payable to: %1', $block->getPayableTo())) ?>
+    <?php endif; ?>
+    
+<?php endif; ?>
